@@ -8,3 +8,4 @@ tiktoken>=0.7,<1
 pymupdf>=1.24,<2
 pytesseract>=0.3.10,<1
 pillow>=10,<14
+-e .

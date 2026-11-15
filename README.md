@@ -65,7 +65,8 @@ GEMINI_MODEL=gemini-3.1-flash-lite
 ```
 
 The editable install is required: the code lives in `src/pdfsummarizer/`, so `app.py` can only
-import it after `pip install -e .`.
+import it after `pip install -e .`. The `-e .` entry in `requirements.txt` also installs the
+package on deployment platforms that install dependencies from that file.
 
 Try it without your own document — the repo includes a three-page sample:
 
