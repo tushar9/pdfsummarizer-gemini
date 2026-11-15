@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdfsummarizer"
+version = "1.0.0"
+description = "LangChain + Gemini PDF summarizer with OCR fallback, Streamlit UI and CLI"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+dependencies = [
+    "streamlit>=1.40,<2",
+    "langchain-core>=1.0,<2",
+    "langchain-text-splitters>=1.0,<2",
+    "langchain-google-genai>=4.0,<5",
+    "pypdf>=5.0,<8",
+    "python-dotenv>=1.0,<2",
+    "tiktoken>=0.7,<1",
+    "pymupdf>=1.24,<2",
+    "pytesseract>=0.3.10,<1",
+    "pillow>=10,<14",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<9", "ruff>=0.6,<1"]
+
+[project.scripts]
+pdfsummarizer = "pdfsummarizer.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "live: calls the real Gemini API (opt-in with -m live)",
+    "ocr: requires the Tesseract binary (skipped when it is missing)",
+]
+addopts = "-m 'not live'"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
